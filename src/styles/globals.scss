@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+}
+
+:root {
+  --gray-100: #d7d7d7;
+  --gray-300: #bbbbbb;
+  --gray: #f8f8f8;
+  --pink: #ff57b2;
+  --black: #282c34;
+  --background: #1a1d23;
+}
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 93.7%;
+  }
+}
+
+@media (max-width: 720px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+html {
+  font-family: 'Inter', sans-serif;
+  font: 1rem;
+}
+// TODO
