@@ -3,10 +3,8 @@ import { RiUser3Line, RiCalendarLine } from 'react-icons/ri';
 
 import Prismic from '@prismicio/client';
 import { useAllPrismicDocumentsByType } from '@prismicio/react';
-import { type } from 'os';
-// import { getPrismicClient } from '../services/prismic';
+import { getPrismicClient } from '../services/prismic';
 
-import { Console } from 'console';
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
 import Header from '../components/Header';
