@@ -4,7 +4,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { RouterContext } from 'next/dist/next-server/lib/router-context';
 
 import { getPrismicClient } from '../../services/prismic';
-import App, { getStaticProps } from '../../pages';
+import App /* { getStaticProps } */ from '../../pages';
 
 interface Post {
   uid?: string;
@@ -29,7 +29,7 @@ interface GetStaticPropsResult {
   props: HomeProps;
 }
 
-const mockedQueryReturn = {
+const mockedGetByTypeReturn = {
   next_page: 'link',
   results: [
     {
@@ -79,8 +79,8 @@ describe('Home', () => {
     };
 
     mockedPrismic.mockReturnValue({
-      query: () => {
-        return Promise.resolve(mockedQueryReturn);
+      getByType: () => {
+        return Promise.resolve(mockedGetByTypeReturn);
       },
     });
 
@@ -107,11 +107,11 @@ describe('Home', () => {
   });
 
   it('should be able to return prismic posts documents using getStaticProps', async () => {
-    // const postsPaginationReturn = mockedQueryReturn;
+    // const postsPaginationReturn = mockedGetByTypeReturn;
     // const getStaticPropsContext: GetStaticPropsContext<ParsedUrlQuery> = {};
-    // const response = (await getStaticProps(
-    //   getStaticPropsContext
-    // )) as GetStaticPropsResult;
+    // // const response = (await getStaticProps(
+    // //   getStaticPropsContext
+    // // )) as GetStaticPropsResult;
     // expect(response.props.postsPagination.next_page).toEqual(
     //   postsPaginationReturn.next_page
     // );
@@ -124,45 +124,44 @@ describe('Home', () => {
   });
 
   it('should be able to render posts documents info', () => {
-    // const postsPagination = mockedQueryReturn;
-    // render(<App postsPagination={postsPagination} />);
-    // screen.getByText('Como utilizar Hooks');
-    // screen.getByText('Pensando em sincronização em vez de ciclos de vida');
-    // screen.getByText('15 mar 2021');
-    // screen.getByText('Joseph Oliveira');
-    // screen.getByText('Criando um app CRA do zero');
-    // screen.getByText(
-    //   'Tudo sobre como criar a sua primeira aplicação utilizando Create React App'
-    // );
-    // screen.getByText('15 mar 2021');
-    // screen.getByText('Danilo Vieira');
+    const postsPagination = mockedGetByTypeReturn;
+    render(<App postsPagination={postsPagination} />);
+
+    screen.getByText('Como utilizar Hooks');
+    screen.getByText('Pensando em sincronização em vez de ciclos de vida');
+    screen.getByText('Joseph Oliveira');
+    screen.getByText('Criando um app CRA do zero');
+    screen.getByText(
+      'Tudo sobre como criar a sua primeira aplicação utilizando Create React App'
+    );
+    screen.getByText('Danilo Vieira');
   });
 
   it('should be able to navigate to post page after a click', () => {
-    // const postsPagination = mockedQueryReturn;
-    // render(<App postsPagination={postsPagination} />, {
-    //   wrapper: RouterWrapper,
-    // });
-    // const firstPostTitle = screen.getByText('Como utilizar Hooks');
-    // const secondPostTitle = screen.getByText('Criando um app CRA do zero');
-    // fireEvent.click(firstPostTitle);
-    // fireEvent.click(secondPostTitle);
-    // expect(mockedPush).toHaveBeenNthCalledWith(
-    //   1,
-    //   '/post/como-utilizar-hooks',
-    //   expect.anything(),
-    //   expect.anything()
-    // );
-    // expect(mockedPush).toHaveBeenNthCalledWith(
-    //   2,
-    //   '/post/criando-um-app-cra-do-zero',
-    //   expect.anything(),
-    //   expect.anything()
-    // );
+    const postsPagination = mockedGetByTypeReturn;
+    render(<App postsPagination={postsPagination} />, {
+      wrapper: RouterWrapper,
+    });
+    const firstPostTitle = screen.getByText('Como utilizar Hooks');
+    const secondPostTitle = screen.getByText('Criando um app CRA do zero');
+    fireEvent.click(firstPostTitle);
+    fireEvent.click(secondPostTitle);
+    expect(mockedPush).toHaveBeenNthCalledWith(
+      1,
+      '/post/como-utilizar-hooks',
+      expect.anything(),
+      expect.anything()
+    );
+    expect(mockedPush).toHaveBeenNthCalledWith(
+      2,
+      '/post/criando-um-app-cra-do-zero',
+      expect.anything(),
+      expect.anything()
+    );
   });
 
   it('should be able to load more posts if available', async () => {
-    // const postsPagination = { ...mockedQueryReturn };
+    // const postsPagination = { ...mockedGetByTypeReturn };
     // postsPagination.results = [
     //   {
     //     uid: 'como-utilizar-hooks',
@@ -188,7 +187,7 @@ describe('Home', () => {
   });
 
   it('should not be able to load more posts if not available', async () => {
-    // const postsPagination = mockedQueryReturn;
+    // const postsPagination = mockedGetByTypeReturn;
     // postsPagination.next_page = null;
     // render(<App postsPagination={postsPagination} />);
     // screen.getByText('Como utilizar Hooks');

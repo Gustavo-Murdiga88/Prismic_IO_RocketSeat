@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from 'next/document';
 import Document from 'next/document';
 
 export default class MyDocument extends Document {
-  render(): any {
+  render(): JSX.Element {
     return (
       <Html>
         <Head>

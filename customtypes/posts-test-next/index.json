@@ -1,17 +1,10 @@
 {
-  "id": "Posts",
-  "label": "Posts",
-  "repeatable": false,
+  "id": "posts-test-next",
+  "label": "Posts Next",
+  "repeatable": true,
   "status": true,
   "json": {
     "Main": {
-      "uid": {
-        "type": "UID",
-        "config": {
-          "label": "Uid",
-          "placeholder": ""
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

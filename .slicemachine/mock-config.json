@@ -1,17 +1,13 @@
 {
   "_cts": {
-    "Posts": {
-      "title": {
-        "config": {
-          "patternType": "PARAGRAPH",
-          "blocks": 1
-        }
-      },
-      "content": {
-        "config": {
-          "patternType": "HEADING",
-          "blocks": 1
-        }
+    "Posts": {},
+    "Posts-test-rocket": {},
+    "posts-test-next": {}
+  },
+  "slices": {
+    "PostsNext": {
+      "default": {
+        "primary": {}
       }
     }
   }

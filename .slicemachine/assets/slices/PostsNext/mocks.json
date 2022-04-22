@@ -1,0 +1,130 @@
+[
+  {
+    "variation": "default",
+    "name": "Default",
+    "slice_type": "posts_next",
+    "items": [
+      {
+        "title": [
+          {
+            "type": "paragraph",
+            "text": "Eiusmod eiusmod reprehenderit voluptate. Irure sunt eu eu enim non do cupidatat.",
+            "spans": []
+          }
+        ],
+        "subtitle": [
+          {
+            "type": "paragraph",
+            "text": "Laboris deserunt esse aliqua voluptate id aliquip non mollit amet non labore proident veniam consectetur eu.",
+            "spans": []
+          }
+        ],
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Incididunt nulla Lorem irure et ullamco officia qui in excepteur.",
+            "spans": []
+          }
+        ],
+        "author": [
+          {
+            "type": "paragraph",
+            "text": "Occaecat non cupidatat esse culpa deserunt dolor mollit eu aute. Ipsum ullamco sit consequat ea do minim consectetur nulla sint aliqua ad elit non voluptate adipisicing. Esse fugiat aliqua minim aliqua duis commodo do fugiat cupidatat dolore commodo deserunt laboris.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "title": [
+          {
+            "type": "paragraph",
+            "text": "Do do non eiusmod anim dolor dolor. Laboris reprehenderit amet culpa aliquip Lorem adipisicing ex.",
+            "spans": []
+          }
+        ],
+        "subtitle": [
+          {
+            "type": "paragraph",
+            "text": "Aliquip aliquip velit ex magna id culpa consectetur laboris. Non elit anim laboris. Id consectetur ut Lorem consectetur officia qui ut nostrud sit incididunt voluptate pariatur sit consectetur.",
+            "spans": []
+          }
+        ],
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Aute enim anim ad. Excepteur ad sit dolor ullamco ea amet dolor irure labore exercitation labore.",
+            "spans": []
+          }
+        ],
+        "author": [
+          {
+            "type": "paragraph",
+            "text": "Culpa tempor laboris commodo. Amet culpa id tempor reprehenderit in adipisicing nulla. Culpa consequat in ex excepteur do occaecat.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "title": [
+          {
+            "type": "paragraph",
+            "text": "In ut pariatur laboris in laborum excepteur elit sunt nulla quis mollit est incididunt proident. Nostrud enim ex laboris est exercitation ipsum voluptate dolor.",
+            "spans": []
+          }
+        ],
+        "subtitle": [
+          {
+            "type": "paragraph",
+            "text": "Sunt qui reprehenderit veniam aute do mollit minim veniam enim excepteur nisi ut esse.",
+            "spans": []
+          }
+        ],
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Ea est in id amet nostrud Lorem nostrud in veniam ea pariatur proident dolor est. Ipsum irure culpa sunt.",
+            "spans": []
+          }
+        ],
+        "author": [
+          {
+            "type": "paragraph",
+            "text": "Et enim irure ea fugiat tempor elit exercitation nostrud commodo aute adipisicing sunt et.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "title": [
+          {
+            "type": "paragraph",
+            "text": "Irure reprehenderit eu cillum anim. Amet est deserunt voluptate est id non occaecat consectetur id nostrud reprehenderit id culpa proident.",
+            "spans": []
+          }
+        ],
+        "subtitle": [
+          {
+            "type": "paragraph",
+            "text": "Et ipsum est duis ea reprehenderit anim dolore anim aliqua. Aliquip et enim minim dolor ex id duis aute do id.",
+            "spans": []
+          }
+        ],
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Quis consequat eiusmod enim irure.",
+            "spans": []
+          }
+        ],
+        "author": [
+          {
+            "type": "paragraph",
+            "text": "Sunt cillum exercitation eiusmod labore velit magna velit non aute consequat pariatur velit pariatur voluptate. Fugiat fugiat exercitation reprehenderit consectetur tempor exercitation cillum elit consectetur anim consequat reprehenderit nostrud ut. Voluptate ex velit occaecat labore reprehenderit culpa.",
+            "spans": []
+          }
+        ]
+      }
+    ],
+    "primary": {}
+  }
+]

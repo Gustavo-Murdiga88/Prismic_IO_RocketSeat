@@ -1,0 +1,35 @@
+{
+  "id": "76ef06d2-011d-4143-a6ac-8a3547387228",
+  "uid": "minima-quaerat-quos",
+  "type": "Posts-test-rocket",
+  "data": {
+    "title": [
+      {
+        "type": "paragraph",
+        "text": "Consectetur adipisicing reprehenderit eiusmod quis consectetur quis elit velit qui culpa et veniam.",
+        "spans": []
+      }
+    ],
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Enim ut velit mollit ea eu occaecat amet aliqua irure nulla deserunt commodo ea. Cupidatat tempor id ut ad elit irure anim eiusmod voluptate elit duis consectetur.",
+        "spans": []
+      }
+    ],
+    "subtitle": [
+      {
+        "type": "paragraph",
+        "text": "Eu eiusmod non Lorem.",
+        "spans": []
+      }
+    ],
+    "author": [
+      {
+        "type": "paragraph",
+        "text": "Qui proident dolore cillum excepteur eiusmod consequat duis qui. Proident dolore aliquip excepteur nostrud et commodo. Exercitation minim mollit proident non incididunt.",
+        "spans": []
+      }
+    ]
+  }
+}
