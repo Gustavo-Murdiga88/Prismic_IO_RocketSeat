@@ -2,7 +2,22 @@
   "_cts": {
     "Posts": {},
     "Posts-test-rocket": {},
-    "posts-test-next": {}
+    "posts-test-next": {
+      "content": {
+        "bodySecondGroup": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        },
+        "body": {
+          "config": {
+            "patternType": "HEADING",
+            "blocks": 1
+          }
+        }
+      }
+    }
   },
   "slices": {
     "PostsNext": {
