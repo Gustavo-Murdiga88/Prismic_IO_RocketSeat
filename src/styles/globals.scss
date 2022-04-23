@@ -26,6 +26,15 @@
   }
 }
 
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 html {
   font-family: 'Inter', sans-serif;
   font: 1rem;
