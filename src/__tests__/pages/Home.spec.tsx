@@ -4,7 +4,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { RouterContext } from 'next/dist/next-server/lib/router-context';
 
 import { getPrismicClient } from '../../services/prismic';
-import App /* { getStaticProps } */ from '../../pages';
+import App, { getStaticProps /* { getStaticProps } */ } from '../../pages';
 
 interface Post {
   uid?: string;
@@ -107,20 +107,20 @@ describe('Home', () => {
   });
 
   it('should be able to return prismic posts documents using getStaticProps', async () => {
-    // const postsPaginationReturn = mockedGetByTypeReturn;
-    // const getStaticPropsContext: GetStaticPropsContext<ParsedUrlQuery> = {};
-    // // const response = (await getStaticProps(
-    // //   getStaticPropsContext
-    // // )) as GetStaticPropsResult;
-    // expect(response.props.postsPagination.next_page).toEqual(
-    //   postsPaginationReturn.next_page
-    // );
-    // expect(response.props.postsPagination.results).toEqual(
-    //   expect.arrayContaining([
-    //     expect.objectContaining(postsPaginationReturn.results[0]),
-    //     expect.objectContaining(postsPaginationReturn.results[1]),
-    //   ])
-    // );
+    const postsPaginationReturn = mockedGetByTypeReturn;
+    const getStaticPropsContext: GetStaticPropsContext<ParsedUrlQuery> = {};
+    const response = (await getStaticProps(
+      getStaticPropsContext
+    )) as GetStaticPropsResult;
+    expect(response.props.postsPagination.next_page).toEqual(
+      postsPaginationReturn.next_page
+    );
+    expect(response.props.postsPagination.results).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining(postsPaginationReturn.results[0]),
+        expect.objectContaining(postsPaginationReturn.results[1]),
+      ])
+    );
   });
 
   it('should be able to render posts documents info', () => {
@@ -187,12 +187,12 @@ describe('Home', () => {
   });
 
   it('should not be able to load more posts if not available', async () => {
-    // const postsPagination = mockedGetByTypeReturn;
-    // postsPagination.next_page = null;
-    // render(<App postsPagination={postsPagination} />);
-    // screen.getByText('Como utilizar Hooks');
-    // screen.getByText('Criando um app CRA do zero');
-    // const loadMorePostsButton = screen.queryByText('Carregar mais posts');
-    // expect(loadMorePostsButton).not.toBeInTheDocument();
+    const postsPagination = mockedGetByTypeReturn;
+    postsPagination.next_page = null;
+    render(<App postsPagination={postsPagination} />);
+    screen.getByText('Como utilizar Hooks');
+    screen.getByText('Criando um app CRA do zero');
+    const loadMorePostsButton = screen.queryByText('Carregar mais posts');
+    expect(loadMorePostsButton).not.toBeInTheDocument();
   });
 });

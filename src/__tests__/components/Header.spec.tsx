@@ -30,15 +30,15 @@ describe('Header', () => {
   });
 
   it('should be able to navigate to home page after a click', () => {
-    // render(<Header />, {
-    //   wrapper: RouterWrapper,
-    // });
-    // const secondLink = screen.getByAltText('logo');
-    // fireEvent.click(secondLink);
-    // expect(mockedPush).toHaveBeenCalledWith(
-    //   '/',
-    //   expect.anything(),
-    //   expect.anything()
-    // );
+    render(<Header />, {
+      wrapper: RouterWrapper,
+    });
+    const secondLink = screen.getByAltText('logo');
+    fireEvent.click(secondLink);
+    expect(mockedPush).toHaveBeenCalledWith(
+      '/',
+      expect.anything(),
+      expect.anything()
+    );
   });
 });

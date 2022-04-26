@@ -5,34 +5,63 @@
   color: var(--gray);
   padding: 2rem;
 
-  h2 {
-    margin: 1.5rem 1rem 0;
-    padding-left: 0.8rem;
-    font-size: 1.2rem;
-  }
+  div{
+    h2 {
+      margin: 1.5rem 1rem 0;
+      padding-left: 0.8rem;
+      font-size: 1.2rem;
+    }
 
-  p {
-    margin: 0.5rem 1rem 0.5rem;
-    padding: 0 0 0 0.8rem;
-    color: var(--gray-300);
-    font-size: 0.8rem;
-  }
-
-  div {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    margin: 0 1rem;
-    padding: 0 0.8rem;
-
-    time {
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
+    p {
+      margin: 0.5rem 1rem 0.5rem;
+      padding: 0 0 0 0.8rem;
+      color: var(--gray-300);
       font-size: 0.8rem;
     }
-    span {
-      margin-left: 0.2rem;
-      font-size: 0.8rem;
+
+    div {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      margin: 0 1rem;
+      padding: 0 0.8rem;
+
+      time {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        font-size: 0.8rem;
+      }
+      span {
+        margin-left: 0.2rem;
+        font-size: 0.8rem;
+      }
     }
   }
+}
+
+.loadingPosts{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    border: none;
+    color: var(--gray);
+    margin: 2rem 0;
+    width: 190px;
+    padding: 1rem 1rem;
+    background: var(--pink);
+    border-radius: 0.25rem;
+
+    transition: filter 0.2s;
+
+    &:hover{
+      filter: brightness(0.8);
+    }
+
+  }
+}
+
+.loadingNone {
+  display: none;
 }
