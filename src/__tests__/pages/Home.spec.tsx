@@ -161,29 +161,29 @@ describe('Home', () => {
   });
 
   it('should be able to load more posts if available', async () => {
-    // const postsPagination = { ...mockedGetByTypeReturn };
-    // postsPagination.results = [
-    //   {
-    //     uid: 'como-utilizar-hooks',
-    //     first_publication_date: '2021-03-15T19:25:28+0000',
-    //     data: {
-    //       title: 'Como utilizar Hooks',
-    //       subtitle: 'Pensando em sincronização em vez de ciclos de vida',
-    //       author: 'Joseph Oliveira',
-    //     },
-    //   },
-    // ];
-    // render(<App postsPagination={postsPagination} />);
-    // screen.getByText('Como utilizar Hooks');
-    // const loadMorePostsButton = screen.getByText('Carregar mais posts');
-    // fireEvent.click(loadMorePostsButton);
-    // await waitFor(
-    //   () => {
-    //     expect(mockedFetch).toHaveBeenCalled();
-    //   },
-    //   { timeout: 200 }
-    // );
-    // screen.getByText('Criando um app CRA do zero');
+    const postsPagination = { ...mockedGetByTypeReturn };
+    postsPagination.results = [
+      {
+        uid: 'como-utilizar-hooks',
+        first_publication_date: '',
+        data: {
+          title: 'Como utilizar Hooks',
+          subtitle: 'Pensando em sincronização em vez de ciclos de vida',
+          author: 'Joseph Oliveira',
+        },
+      },
+    ];
+    render(<App postsPagination={postsPagination} />);
+    screen.getByText('Como utilizar Hooks');
+    const loadMorePostsButton = screen.getByText('Carregar mais posts');
+    fireEvent.click(loadMorePostsButton);
+    await waitFor(
+      () => {
+        expect(mockedFetch).toHaveBeenCalled();
+      },
+      { timeout: 200 }
+    );
+    screen.getByText('Criando um app CRA do zero');
   });
 
   it('should not be able to load more posts if not available', async () => {

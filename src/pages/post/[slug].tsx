@@ -22,7 +22,6 @@ interface Post {
     }[];
   };
 }
-
 interface PostProps {
   post: Post;
 }
@@ -34,10 +33,12 @@ export default function Post({ post }: PostProps): JSX.Element {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const prismic = getPrismicClient({});
-  const posts = await prismic.query('post-test-next');
+  const posts = await prismic.getByType('post-test-next', {
+    accessToken: process.env.PRISMIC_API_TOKEN,
+  });
 
   return {
-    paths: [],
+    paths: posts.results.map(item => item.uid),
     fallback: 'blocking',
   };
 };

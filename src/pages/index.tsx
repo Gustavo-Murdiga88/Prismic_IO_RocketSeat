@@ -54,6 +54,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
           </div>
         </>
       ))}
+      <button type="button"> Carregar mais posts </button>
     </section>
   );
 }
@@ -74,7 +75,6 @@ export const getStaticProps: GetStaticProps = async () => {
   //     accessToken: process.env.PRISMIC_API_TOKEN,
   //   }
   // );
-
   return {
     props: {
       postsPagination: {
