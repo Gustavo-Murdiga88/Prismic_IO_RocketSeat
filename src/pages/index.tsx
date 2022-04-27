@@ -6,6 +6,8 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
+import { stringify } from 'querystring';
+import { RichText } from 'prismic-dom';
 import Header from '../components/Header';
 import { getPrismicClient } from '../services/prismic';
 
@@ -118,11 +120,10 @@ export const getStaticProps: GetStaticProps = async () => {
   //     accessToken: process.env.PRISMIC_API_TOKEN,
   //   }
   // );
+
   return {
     props: {
-      postsPagination: {
-        results: postsPagination.results,
-      },
+      postsPagination,
     },
   };
 };

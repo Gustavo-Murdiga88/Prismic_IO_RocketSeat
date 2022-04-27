@@ -4,6 +4,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { RichText } from 'prismic-dom';
 import { RiCalendarLine, RiClockwise2Line, RiUser3Line } from 'react-icons/ri';
+import { PrismicRichText } from '@prismicio/react';
 import Header from '../../components/Header';
 
 import { getPrismicClient } from '../../services/prismic';
@@ -65,11 +66,21 @@ export default function Post({ post }: PostProps): JSX.Element {
         </div>
 
         <h3>{post.data.content[0].heading}</h3>
-
-        <p>{post.data.content[0].body[0].text}</p>
+        <div
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: RichText.asHtml(post.data.content[0].body),
+          }}
+        />
 
         <h3>{post.data.content[0].headingSecondGroup}</h3>
-        <p> {post.data.content[0].bodySecondGroup[0].text}</p>
+        <div
+          className="posts"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: RichText.asHtml(post.data.content[0].bodySecondGroup),
+          }}
+        />
       </section>
     </>
   );
@@ -80,9 +91,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await prismic.getByType('post-test-next', {
     accessToken: process.env.PRISMIC_API_TOKEN,
   });
+  // const prismic = getPrismicClient({});
+  // const posts = await prismic.query('post-test-next');
 
   return {
-    paths: posts.results.map(item => item.uid),
+    // paths: posts.results.map(item => item.uid)
+    paths: [],
     fallback: 'blocking',
   };
 };
@@ -93,6 +107,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const response = await prismic.getByUID('posts-test-next', String(slug), {
     accessToken: process.env.PRISMIC_API_TOKEN,
   });
+  console.log(JSON.stringify(response, null, 2));
 
   return {
     props: {

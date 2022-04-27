@@ -12,7 +12,7 @@
         },
         "body": {
           "config": {
-            "patternType": "HEADING",
+            "patternType": "PARAGRAPH",
             "blocks": 1
           }
         }
