@@ -61,22 +61,6 @@
                 "allowTargetBlank": true,
                 "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
               }
-            },
-            "headingSecondGroup": {
-              "type": "Text",
-              "config": {
-                "label": "Heading Second Group",
-                "placeholder": ""
-              }
-            },
-            "bodySecondGroup": {
-              "type": "StructuredText",
-              "config": {
-                "label": "Body Second Group",
-                "placeholder": "",
-                "allowTargetBlank": true,
-                "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-              }
             }
           }
         }

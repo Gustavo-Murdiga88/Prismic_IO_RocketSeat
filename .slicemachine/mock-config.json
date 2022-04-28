@@ -4,12 +4,6 @@
     "Posts-test-rocket": {},
     "posts-test-next": {
       "content": {
-        "bodySecondGroup": {
-          "config": {
-            "patternType": "PARAGRAPH",
-            "blocks": 1
-          }
-        },
         "body": {
           "config": {
             "patternType": "PARAGRAPH",

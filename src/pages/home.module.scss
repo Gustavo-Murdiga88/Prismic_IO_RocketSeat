@@ -5,7 +5,7 @@
   color: var(--gray);
   padding: 2rem;
 
-  div{
+  div {
     h2 {
       margin: 1.5rem 1rem 0;
       padding-left: 0.8rem;
@@ -39,7 +39,7 @@
   }
 }
 
-.loadingPosts{
+.loadingPosts {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,10 +55,9 @@
 
     transition: filter 0.2s;
 
-    &:hover{
+    &:hover {
       filter: brightness(0.8);
     }
-
   }
 }
 

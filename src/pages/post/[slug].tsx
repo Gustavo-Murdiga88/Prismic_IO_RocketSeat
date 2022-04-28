@@ -4,7 +4,9 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { RichText } from 'prismic-dom';
 import { RiCalendarLine, RiClockwise2Line, RiUser3Line } from 'react-icons/ri';
-import { PrismicRichText } from '@prismicio/react';
+import * as Prismic from '@prismicio/client';
+
+import { useRouter } from 'next/router';
 import Header from '../../components/Header';
 
 import { getPrismicClient } from '../../services/prismic';
@@ -24,11 +26,7 @@ interface Post {
     author: string;
     content: {
       heading: string;
-      headingSecondGroup: string;
       body: {
-        text: string;
-      }[];
-      bodySecondGroup: {
         text: string;
       }[];
     }[];
@@ -39,9 +37,11 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps): JSX.Element {
-  console.log(post.data.content[0].bodySecondGroup[0].text);
+  const router = useRouter();
+
   return (
     <>
+      {router.isFallback && <h1>Carregando...</h1>}
       <Head>
         <title> Posts | {post.data.title}</title>
       </Head>
@@ -73,12 +73,12 @@ export default function Post({ post }: PostProps): JSX.Element {
           }}
         />
 
-        <h3>{post.data.content[0].headingSecondGroup}</h3>
+        <h3>{post.data.content[1].heading}</h3>
         <div
           className="posts"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
-            __html: RichText.asHtml(post.data.content[0].bodySecondGroup),
+            __html: RichText.asHtml(post.data.content[1].body),
           }}
         />
       </section>
@@ -88,16 +88,34 @@ export default function Post({ post }: PostProps): JSX.Element {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const prismic = getPrismicClient({});
-  const posts = await prismic.getByType('post-test-next', {
+  const posts = await prismic.getByType('posts-test-next', {
     accessToken: process.env.PRISMIC_API_TOKEN,
   });
   // const prismic = getPrismicClient({});
-  // const posts = await prismic.query('post-test-next');
+  // const posts = await prismic.query(
+  //   [Prismic.predicate.at('document.type', 'post-test-next')],
+  //   {
+  //     fetch: ['post-test-next.uid'],
+  //     pageSize: 5,
+  //   }
+  // );
+
+  const slug = posts.results.map(item => item.uid);
 
   return {
-    // paths: posts.results.map(item => item.uid)
-    paths: [],
-    fallback: 'blocking',
+    paths: [
+      {
+        params: {
+          slug: slug[0],
+        },
+      },
+      {
+        params: {
+          slug: slug[1],
+        },
+      },
+    ],
+    fallback: true,
   };
 };
 
@@ -107,11 +125,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const response = await prismic.getByUID('posts-test-next', String(slug), {
     accessToken: process.env.PRISMIC_API_TOKEN,
   });
-  console.log(JSON.stringify(response, null, 2));
 
   return {
     props: {
-      post: response,
+      post: {
+        first_publication_date: response.first_publication_date,
+        data: response.data,
+      },
     },
   };
 };

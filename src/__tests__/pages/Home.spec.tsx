@@ -165,7 +165,7 @@ describe('Home', () => {
     postsPagination.results = [
       {
         uid: 'como-utilizar-hooks',
-        first_publication_date: '',
+        first_publication_date: String(new Date()),
         data: {
           title: 'Como utilizar Hooks',
           subtitle: 'Pensando em sincronização em vez de ciclos de vida',

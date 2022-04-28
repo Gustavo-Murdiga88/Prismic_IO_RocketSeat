@@ -45,7 +45,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
         {display
           ? postsPagination.results.reverse().map(items => (
               <div key={items.uid}>
-                <Link href={`/post/${items.uid}`} prefetch>
+                <Link href={`/post/${items.uid}`} passHref prefetch>
                   <a>
                     <h2>{items.data.title}</h2>
                   </a>
@@ -54,7 +54,6 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
                 <div>
                   <RiCalendarLine />
                   <time>
-                    {' '}
                     {format(
                       new Date(items.first_publication_date),
                       'dd MMM yyyy',
@@ -68,9 +67,14 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
                 </div>
               </div>
             ))
-          : postsPagination.results.slice(1).map(items => (
+          : postsPagination.results.slice(0, 2).map(items => (
               <div key={items.uid}>
-                <Link href={`/post/${items.uid}`} prefetch key={items.uid}>
+                <Link
+                  href={`/post/${items.uid}`}
+                  prefetch
+                  passHref
+                  key={items.uid}
+                >
                   <a>
                     <h2>{items.data.title}</h2>
                   </a>
@@ -79,7 +83,6 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
                 <div>
                   <RiCalendarLine />
                   <time>
-                    {' '}
                     {format(
                       new Date(items.first_publication_date),
                       'dd MMM yyyy',
@@ -94,12 +97,21 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
               </div>
             ))}
       </section>
-
-      <div className={!display ? styles.loadingPosts : styles.loadingNone}>
-        <button type="button" onClick={() => setDisplay(!display)}>
-          Carregar mais posts
-        </button>
-      </div>
+      {display ? (
+        <div className={!display ? styles.loadingPosts : styles.loadingNone}>
+          <button
+            type="button"
+            onClick={() => {
+              setDisplay(!display);
+              fetch(postsPagination.next_page);
+            }}
+          >
+            Carregar mais posts
+          </button>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 }
@@ -123,7 +135,10 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      postsPagination,
+      postsPagination: {
+        next_page: postsPagination.next_page,
+        results: postsPagination.results,
+      },
     },
   };
 };
