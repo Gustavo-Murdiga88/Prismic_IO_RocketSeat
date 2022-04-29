@@ -53,12 +53,7 @@ export default function Post({ post }: PostProps): JSX.Element {
         <h2>{post.data.title}</h2>
         <div>
           <RiCalendarLine />
-          <time>
-            {' '}
-            {format(new Date(post.first_publication_date), 'dd MMM yyyy', {
-              locale: ptBR,
-            })}
-          </time>
+          <time>{post.first_publication_date}</time>
           <RiUser3Line />
           <span> {post.data.author} </span>
           <RiClockwise2Line />
@@ -129,7 +124,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       post: {
-        first_publication_date: response.first_publication_date,
+        first_publication_date: format(
+          new Date(response.first_publication_date),
+          'dd MMM yyyy',
+          {
+            locale: ptBR,
+          }
+        ),
         data: response.data,
       },
     },
