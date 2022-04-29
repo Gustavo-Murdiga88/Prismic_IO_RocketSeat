@@ -34,6 +34,15 @@ interface HomeProps {
 
 export default function Home({ postsPagination }: HomeProps): JSX.Element {
   const [display, setDisplay] = useState<boolean>(false);
+  const [postsPerPage, setPostsPerpage] = useState<PostPagination>();
+
+  const response = async () => {
+    const ṕostsTeste = await fetch(postsPagination.next_page).then(respose =>
+      respose.json()
+    );
+
+    setPostsPerpage(ṕostsTeste);
+  };
 
   return (
     <>
@@ -42,75 +51,73 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
       </Head>
       <section className={styles.home}>
         <Header />
-        {display
-          ? postsPagination.results.reverse().map(items => (
-              <div key={items.uid}>
-                <Link href={`/post/${items.uid}`} passHref prefetch>
-                  <a>
-                    <h2>{items.data.title}</h2>
-                  </a>
-                </Link>
-                <p> {items.data.subtitle}</p>
-                <div>
-                  <RiCalendarLine />
-                  <time>
-                    {format(
-                      new Date(items.first_publication_date),
-                      'dd MMM yyyy',
-                      {
-                        locale: ptBR,
-                      }
-                    )}
-                  </time>
-                  <RiUser3Line />
-                  <span> {items.data.author} </span>
-                </div>
+        {postsPagination.results.reverse().map(items => (
+          <div key={items.uid}>
+            <Link href={`/post/${items.uid}`} passHref prefetch>
+              <a>
+                <h2>{items.data.title}</h2>
+              </a>
+            </Link>
+            <p> {items.data.subtitle}</p>
+            <div>
+              <RiCalendarLine />
+              <time>
+                {format(new Date(items.first_publication_date), 'dd MMM yyyy', {
+                  locale: ptBR,
+                })}
+              </time>
+              <RiUser3Line />
+              <span> {items.data.author} </span>
+            </div>
+          </div>
+        ))}
+        {postsPerPage &&
+          postsPerPage.results.map(items => (
+            <div key={items.uid}>
+              <Link
+                href={`/post/${items.uid}`}
+                prefetch
+                passHref
+                key={items.uid}
+              >
+                <a>
+                  <h2>{items.data.title}</h2>
+                </a>
+              </Link>
+              <p> {items.data.subtitle}</p>
+              <div>
+                <RiCalendarLine />
+                <time>
+                  {format(
+                    new Date(items.first_publication_date),
+                    'dd MMM yyyy',
+                    {
+                      locale: ptBR,
+                    }
+                  )}
+                </time>
+                <RiUser3Line />
+                <span> {items.data.author} </span>
               </div>
-            ))
-          : postsPagination.results.slice(0, 2).map(items => (
-              <div key={items.uid}>
-                <Link
-                  href={`/post/${items.uid}`}
-                  prefetch
-                  passHref
-                  key={items.uid}
-                >
-                  <a>
-                    <h2>{items.data.title}</h2>
-                  </a>
-                </Link>
-                <p> {items.data.subtitle}</p>
-                <div>
-                  <RiCalendarLine />
-                  <time>
-                    {format(
-                      new Date(items.first_publication_date),
-                      'dd MMM yyyy',
-                      {
-                        locale: ptBR,
-                      }
-                    )}
-                  </time>
-                  <RiUser3Line />
-                  <span> {items.data.author} </span>
-                </div>
-              </div>
-            ))}
+            </div>
+          ))}
       </section>
-      {display ? (
-        <div className={!display ? styles.loadingPosts : styles.loadingNone}>
+      {postsPagination.next_page && !display && (
+        <div
+          className={
+            postsPagination.next_page ? styles.loadingPosts : styles.loadingNone
+          }
+        >
           <button
             type="button"
-            onClick={() => {
+            onClick={async () => {
               setDisplay(!display);
-              fetch(postsPagination.next_page);
+              response();
             }}
           >
             Carregar mais posts
           </button>
         </div>
-      ) : (
-        <></>
       )}
     </>
   );
@@ -118,27 +125,29 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
 
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient({});
-  const postsPagination = await prismic.getByType('posts-test-next', {
-    accessToken: process.env.PRISMIC_API_TOKEN,
-    pageSize: 5,
-  });
-  // const client = createClient(process.env.PRISMIC_API_ENDPOINT, {
-  //   accessToken: process.env.PRISMIC_API_TOKEN,
-  // });
-  // const postsPagination = await client.getByUID(
-  //   'Posts',
-  //   'npm-pacotes-pacotes-e-pacotes',
-  //   {
-  //     accessToken: process.env.PRISMIC_API_TOKEN,
-  //   }
-  // );
+  {
+    const postsPagination = await prismic.getByType('posts-test-next', {
+      accessToken: process.env.PRISMIC_API_TOKEN,
+      pageSize: 1,
+    });
+    // const client = createClient(process.env.PRISMIC_API_ENDPOINT, {
+    //   accessToken: process.env.PRISMIC_API_TOKEN,
+    // });
+    // const postsPagination = await client.getByUID(
+    //   'Posts',
+    //   'npm-pacotes-pacotes-e-pacotes',
+    //   {
+    //     accessToken: process.env.PRISMIC_API_TOKEN,
+    //   }
+    // );
 
-  return {
-    props: {
-      postsPagination: {
-        next_page: postsPagination.next_page,
-        results: postsPagination.results,
+    return {
+      props: {
+        postsPagination: {
+          next_page: postsPagination.next_page,
+          results: postsPagination.results,
+        },
       },
-    },
-  };
+    };
+  }
 };
