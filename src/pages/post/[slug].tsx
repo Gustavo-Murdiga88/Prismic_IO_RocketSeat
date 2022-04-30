@@ -10,8 +10,6 @@ import Header from '../../components/Header';
 
 import { getPrismicClient } from '../../services/prismic';
 
-// import { getPrismicClient } from '../../services/prismic';
-
 import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
 
@@ -116,5 +114,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         data: response.data,
       },
     },
+    redirect: 60 * 24, // 24 horas,
   };
 };
