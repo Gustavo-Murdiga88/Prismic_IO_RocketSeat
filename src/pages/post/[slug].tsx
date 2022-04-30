@@ -114,6 +114,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         data: response.data,
       },
     },
-    redirect: 60 * 24, // 24 horas,
+    revalidate: 60 * 24, // 24 horas,
   };
 };
