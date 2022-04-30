@@ -4,7 +4,6 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { RichText } from 'prismic-dom';
 import { RiCalendarLine, RiClockwise2Line, RiUser3Line } from 'react-icons/ri';
-import * as Prismic from '@prismicio/client';
 
 import { useRouter } from 'next/router';
 import Header from '../../components/Header';
@@ -86,35 +85,20 @@ export default function Post({ post }: PostProps): JSX.Element {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const prismic = getPrismicClient({});
-  const posts = await prismic.getByType('posts-test-next', {
-    accessToken: process.env.PRISMIC_API_TOKEN,
-  });
-  // const prismic = getPrismicClient({});
-  // const posts = await prismic.query(
-  //   [Prismic.predicate.at('document.type', 'post-test-next')],
-  //   {
-  //     fetch: ['post-test-next.uid'],
-  //     pageSize: 5,
-  //   }
-  // );
-
-  const slug = posts.results.map(item => item.uid);
-
   return {
     paths: [
       {
         params: {
-          slug: slug[0],
+          slug: 'como-utilizar-hooks',
         },
       },
       {
         params: {
-          slug: slug[1],
+          slug: 'criando-um-app-cra-do-zero',
         },
       },
     ],
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
