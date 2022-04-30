@@ -128,7 +128,7 @@ export const getStaticProps: GetStaticProps = async () => {
   {
     const postsPagination = await prismic.getByType('posts-test-next', {
       accessToken: process.env.PRISMIC_API_TOKEN,
-      pageSize: 1,
+      pageSize: 2,
     });
     // const client = createClient(process.env.PRISMIC_API_ENDPOINT, {
     //   accessToken: process.env.PRISMIC_API_TOKEN,

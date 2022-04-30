@@ -1,8 +1,14 @@
 // TODO
-header {
-  padding: 1rem 0.8rem;
-
+.main{
   img {
-    color: var(--gray);
+    margin-left: 2rem;
+  }
+}
+
+@media(max-width:480px){
+  .main{
+    img{
+      margin-left: 1rem;
+    }
   }
 }

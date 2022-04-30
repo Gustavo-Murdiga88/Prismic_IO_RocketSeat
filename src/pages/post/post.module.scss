@@ -44,6 +44,7 @@
 .banner {
   width: 100%;
   height: auto;
+  max-height: 500px;
   margin: 2rem 0;
 }
 
@@ -53,5 +54,43 @@
     max-width: 700px;
     margin-top: 2rem;
     padding: 2px;
+  }
+}
+
+@media(max-width: 480px){
+  .main {
+    max-width: 390px;
+    margin: 0 1.4rem;
+    margin-bottom: 3rem;
+    color: var(--gray);
+
+    h2 {
+      font-size: 1.9rem;
+      margin: 0.8rem 0;
+      line-height: 4rem;
+      text-align: start;
+    }
+
+    svg {
+      margin: 0 0.2rem;
+    }
+
+    div {
+      align-items: center;
+      font-size: 1rem;
+      text-align: start;
+      color: var(--gray-100);
+    }
+
+    h3 {
+      font-size: 1.7rem;
+      line-height: 2rem;
+      margin: 1.7rem 0 1rem;
+    }
+
+    p {
+      text-align: justify;
+
+    }
   }
 }

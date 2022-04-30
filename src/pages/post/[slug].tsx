@@ -50,7 +50,7 @@ export default function Post({ post }: PostProps): JSX.Element {
       </div>
       <img className={styles.banner} src={post.data.banner.url} alt="logo" />
       <section className={styles.main}>
-        <h2>{post.data.title}</h2>
+        <h2>{post.data?.title}</h2>
         <div>
           <RiCalendarLine />
           <time>
@@ -75,7 +75,6 @@ export default function Post({ post }: PostProps): JSX.Element {
 
         <h3>{post.data.content[1].heading}</h3>
         <div
-          className="posts"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: RichText.asHtml(post.data.content[1].body),

@@ -64,3 +64,28 @@
 .loadingNone {
   display: none;
 }
+
+@media (max-width: 480px) {
+  .home {
+    max-width: 370px;
+    margin: 0 auto;
+    color: var(--gray);
+    padding: 1rem auto;
+
+    div {
+      h2 {
+        margin: 1.5rem 1rem 0;
+        padding-left: 0.8rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .loadingPosts {
+    max-width: 370px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
